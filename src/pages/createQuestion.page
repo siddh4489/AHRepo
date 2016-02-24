@@ -1,0 +1,100 @@
+<apex:page controller="NewQuestionController" id="pg">
+<apex:form id="frm">
+<style>
+#filter{
+display: none;
+position: fixed;
+top: 0%;
+left: 0%;
+width: 100%;
+height: 100%;
+background-color: #ffffff;
+z-index:10;
+opacity:0.6;
+filter: alpha(opacity=50);
+}
+.circular {
+    width: 50;
+    height: 40px;
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+    
+    }
+</style>
+<script>
+function startProcess(){
+
+        document.getElementById('{!$Component.pg.frm.loadingdetail}').style.display = 'block';
+        document.getElementById('filter').style.display = 'block';
+
+}
+
+function endProcess(){
+
+        document.getElementById("{!$Component.pg.frm.loadingdetail}").style.display = 'none';
+        document.getElementById('filter').style.display = 'none';
+
+}
+
+</script>
+<apex:actionStatus id="status" onStart="startProcess();" onStop="endProcess();"/>
+<div id="filter"></div>
+ <apex:image url="{!URLFOR($Resource.spinner,'')}" id="loadingdetail" style="width:50px;height:50px;display:none;position:fixed;top:50%;left:50%;z-index:10;"/>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<apex:includescript value="{!URLFOR($Resource.CKEditor, 'ckeditor/ckeditor.js')}" />
+
+ <apex:pageBlock >
+ <apex:pageMessages id="showmsg"></apex:pageMessages>
+ <apex:pageBlockSection columns="1">
+ <h1>Ask a Question:</h1>
+ <hr></hr>
+ <apex:outputPanel ><img class="circular" src="https://sf3.cloud.answerhub.com/users/8/photo/view.html" alt="Smiley face" height="40" width="40"/></apex:outputPanel>
+ <div class="requiredInput">
+ <div class="requiredBlock"></div>
+ Your Question:  <apex:inputText value="{!title}"  html-placeholder="Type your question here.." style="width: 700px;" />
+ </div>
+  
+ Detail: <apex:inputTextarea id="editor" styleClass="ckeditor" richtext="false" value="{!body}" cols="30" rows="8"  html-placeholder="Fill in details.."/>
+   Select a space for your question:
+
+        <apex:selectList value="{!space}" size="1"  style="width: 700px;">
+            <apex:selectOptions value="{!spaces}" />
+        </apex:selectList> 
+
+<div class="requiredInput">
+ <div class="requiredBlock"></div>
+  Topic: <apex:inputText value="{!topic}" style="width: 700px;" html-placeholder="Enter topics.." />
+  </div>
+
+ 
+ </apex:pageBlockSection>
+  <apex:commandButton value="Post Your Question" action="{!save}" rerender="showmsg" onclick="reloadValue()" status="status"/>
+ <apex:commandButton value="Cancel" action="{!cancel}"/>
+ </apex:pageBlock>
+ 
+ 
+<script type="text/javascript">
+var cke_editor_instance = $("textarea[id*='editor']").attr("id");
+ 
+  function reloadValue() {
+  
+  window.onload = function(){   
+     CKEDITOR.replace('pg:frm:editor'); 
+  }
+ 
+   
+  // var element = CKEDITOR.instances['editor'].getData(); 
+   
+  // //alert('hello data'+CKEDITOR.instances[cke_editor_instance].getData()); 
+  $("textarea[id*='editor']").val(CKEDITOR.instances[cke_editor_instance].getData());
+ 
+   }
+   
+    
+ </script>
+ </apex:form>
+</apex:page>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AH version 3%2E0</fullName>
+    <types>
+        <members>AHQuestionsController</members>
+        <members>AHUtility</members>
+        <members>JSON2ApexAllQuestion</members>
+        <members>JSON2ApexAllQuestion_Test</members>
+        <members>JSON2ApexGetQuestionComment</members>
+        <members>JSON2ApexGetQuestionComment_Test</members>
+        <members>JSON2ApexQuestionDetails</members>
+        <members>JSON2ApexQuestionDetails_Test</members>
+        <members>JSON2ApexQuestionsAnswer</members>
+        <members>JSON2ApexQuestionsAnswer_Test</members>
+        <members>NewQuestionController</members>
+        <members>QuestionDetailController</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>AHQuestionsView</members>
+        <members>QuestionDetails</members>
+        <members>createQuestion</members>
+        <name>ApexPage</name>
+    </types>
+    <types>
+        <members>AHConfiguration__c.AHEndpoint__c</members>
+        <members>AHConfiguration__c.AHPassword__c</members>
+        <members>AHConfiguration__c.AHUserName__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>AHConfiguration__c</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>CKEditor</members>
+        <members>like</members>
+        <members>spinner</members>
+        <name>StaticResource</name>
+    </types>
+    <version>33.0</version>
+</Package>
